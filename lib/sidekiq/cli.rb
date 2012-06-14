@@ -121,8 +121,7 @@ module Sidekiq
       options[:queues] << 'default' if options[:queues].empty?
       options[:queues].shuffle!
 
-      if !File.exist?(options[:require]) ||
-         (File.directory?(options[:require]) && !File.exist?("#{options[:require]}/config/application.rb"))
+      if !File.exist?(options[:require])
         logger.info "=================================================================="
         logger.info "  Please point sidekiq to a Rails 3 application or a Ruby file    "
         logger.info "  to load your worker classes with -r [DIR|FILE]."
